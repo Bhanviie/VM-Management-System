@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VM Nexus | Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>◈ VM NEXUS</h2>
+
+    <p class="menu-title">MAIN MENU</p>
+    <a class="active" href="/">▦ Dashboard</a>
+    <a href="#machines">▣ Virtual Machines</a>
+    <a href="/create-vm" class="nav-item">
+    <span>＋</span>
+    Create Virtual Machine
+</a>
+    <a href="#monitoring">◉ Monitoring</a>
+    <a href="#activity-logs" class="nav-item">
+    <span>▤</span>
+    Activity Logs
+</a>
+
+    <div class="sidebar-bottom">
+        <p>VIRTUALIZATION PLATFORM</p>
+        <span>Powered by VirtualBox</span>
+    </div>
+</div>
+
+<main class="main">
+
+    <header>
+        <div>
+            <p class="eyebrow">OVERVIEW</p>
+            <h1>Dashboard</h1>
+            <p class="subtitle">Manage and monitor your virtual infrastructure.</p>
+        </div>
+
+        <div class="system-status">
+            <span class="online-dot"></span>
+            Backend Connected
+        </div>
+    </header>
+<div class="user-info">
+    <span>Logged in as: {{ username }}</span>
+    <span class="role-badge">{{ role }}</span>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+    <section class="stats">
+
+        <div class="stat-card">
+            <p>Total Virtual Machines</p>
+            <h2 id="total-vms">--</h2>
+            <span>Registered VMs</span>
+        </div>
+
+        <div class="stat-card">
+            <p>Running Machines</p>
+            <h2 id="running-vms">--</h2>
+            <span>Currently active</span>
+        </div>
+
+        <div class="stat-card">
+            <p>Stopped Machines</p>
+            <h2 id="stopped-vms">--</h2>
+            <span>Currently inactive</span>
+        </div>
+
+        <div class="stat-card">
+            <p>Host CPU Usage</p>
+            <h2 id="cpu-usage">--%</h2>
+            <span>Physical computer</span>
+        </div>
+
+    </section>
+
+    <section class="panel" id="machines">
+
+        <div class="section-heading">
+            <div>
+                <h2>Virtual Machines</h2>
+                <p>Manage your registered virtual machines.</p>
+            </div>
+
+            <button class="refresh-btn" onclick="loadDashboard()">
+                ↻ Refresh
+            </button>
+        </div>
+
+        <div id="vm-list" class="vm-list">
+            Loading virtual machines...
+        </div>
+
+    </section>
+
+    <section class="panel" id="monitoring">
+
+        <div class="section-heading">
+            <div>
+                <h2>Resource Monitoring</h2>
+                <p>Current physical host resource utilization.</p>
+            </div>
+        </div>
+
+        <div class="resource">
+
+            <div class="resource-heading">
+                <span>CPU Usage</span>
+                <strong id="cpu-label">--%</strong>
+            </div>
+            <div class="progress">
+                <div id="cpu-bar"></div>
+            </div>
+
+            <div class="resource-heading">
+                <span>RAM Usage</span>
+                <strong id="ram-label">--%</strong>
+            </div>
+            <div class="progress">
+                <div id="ram-bar"></div>
+            </div>
+
+            <div class="resource-heading">
+                <span>Storage Usage (C:)</span>
+                <strong id="storage-label">--%</strong>
+            </div>
+            <div class="progress">
+                <div id="storage-bar"></div>
+            </div>
+
+        </div>
+
+    </section>
+   
+    <footer>
+        VM Nexus · Virtual Machine Management System · Prototype
+    </footer>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="/static/script.js"></script>
+
+<section id="activity-logs" class="content-section">
+
+    <h2>Activity Logs</h2>
+    <p>Track virtual machine operations and user activities.</p>
+
+    <button onclick="loadActivityLogs()">Refresh Logs</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Action</th>
+                <th>Virtual Machine</th>
+                <th>Details</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+
+        <tbody id="activity-log-list">
+            <tr>
+                <td colspan="5">Loading activity logs...</td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VM Nexus | Create VM</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-container">
+        <h1>◇ VM NEXUS</h1>
+        <h2>Create Virtual Machine</h2>
+
+        <form id="create-vm-form">
+
+            <input type="text"
+                   id="vm-name"
+                   placeholder="Virtual Machine Name"
+                   required>
+
+            <label>Operating System</label>
+            <select id="os-type" required>
+                <option value="Linux_64">Linux</option>
+                <option value="Ubuntu_64">Ubuntu</option>
+                <option value="Debian_64">Debian</option>
+                <option value="Windows11_64">Windows 11</option>
+            </select>
+
+            <label>RAM (MB)</label>
+            <input type="number" id="ram"
+                   min="512" max="16384"
+                   value="2048" required>
+
+            <label>CPU Cores</label>
+            <input type="number" id="cpus"
+                   min="1" max="8"
+                   value="2" required>
+
+            <label>Disk Size (GB)</label>
+            <input type="number" id="disk"
+                   min="10" max="200"
+                   value="25" required>
+
+            <button type="submit">Create VM</button>
+        </form>
+
+        <p id="result-message"></p>
+
+        <a href="/">Back to Dashboard</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='create_vm.js') }}"></script>
+
+</body>
+</html>
